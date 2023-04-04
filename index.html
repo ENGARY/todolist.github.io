@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="list.css">
+</head>
+<body>
+    <nav>
+        <a href="#">Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#" class="LIST">List</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#" class="EDIT">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </nav>
+    <main>
+        <input type="text" placeholder="Click Here" class="inp">
+        <button class="save">Save</button>
+        <ol class="ol">
+            
+            
+        </ol>
+    </main>
+    <script>
+        // let btn1 = document.getElementsByClassName('LIST');
+        
+        // btn1[0].addEventListener('click', onList);
+        // function onList(){
+            let btn= document.getElementsByClassName('save');
+            btn[0].addEventListener('click', func);
+            function func(){
+                let input = document.getElementsByClassName('inp')[0].value;
+                let onList = document.getElementsByClassName('ol');
+                let li = document.createElement('li');
+                li.append(input);
+                onList[0].append(li);
+                let edit = document.getElementsByClassName('EDIT');
+                edit[0].addEventListener('click', onEdit);
+                function onEdit(){
+                        li.innerHTML= `${input}
+                        <button class='editbtn' onclick='editItem(this)' >Edit</button>
+                        <button class='removebtn'onclick="removeItem(this)" >Remove</button>`
+                
+        }
+            
+        }
+        
+        function removeItem(currElement){
+                    currElement.parentElement.remove();
+                }
+        function editItem(currElement){
+            if (currElement.textContent== 'Done'){
+                currElement.textContent= 'Edit'
+                let currItem = currElement.previousSibling.value
+                let currValue = document.createElement('h4')
+                currValue.textContent= currItem
+                currElement.parentElement.replaceChild(currValue, currElement.previousSibling)  
+
+            }
+            else{
+                currElement.textContent= 'Done'
+                let currItem = currElement.previousSibling.textContent
+                let currInput = document.createElement('input')
+                currInput.className= 'inp'
+                currInput.type = 'text'
+                currElement.parentElement.replaceChild(currInput, currElement.previousSibling) 
+            } 
+            
+           
+
+        }
+          
+
+        
+        
+
+        
+
+    </script>
+
+    
+</body>
+</html>
